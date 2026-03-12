@@ -2,7 +2,9 @@ package com.example.Conta_Bancaria.application;
 
 import com.example.Conta_Bancaria.application.service.AccountServiceRepository;
 import com.example.Conta_Bancaria.shared.dto.AccountDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AccountService {
     private final AccountServiceRepository accountServiceRepository;
 
@@ -14,7 +16,7 @@ public class AccountService {
     public void depositAcount(Long id, Double amount) {
         accountServiceRepository.depositAcount(id, amount);
     }
-    ;
+
     public void withdrawAcount(Long id, Double amount) {
         accountServiceRepository.withdrawAcount(id, amount);
     }
