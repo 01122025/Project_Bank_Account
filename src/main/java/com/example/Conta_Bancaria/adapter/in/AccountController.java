@@ -34,29 +34,38 @@ public class AccountController {
                 return  ResponseEntity.status(HttpStatus.CREATED).build();
    }
 
-   @PostMapping("/deposit")
-   public ResponseEntity<Void> depositAccount (@RequestHeader("Authorization") String user, @RequestBody AccountDTO accountDTO){
-       try{
-           accountService.depositAcount(accountDTO.getId(),accountDTO.getBalance());
-           log.info("Deposito feito com sucesso");
-       }catch(Exception e){
-           e.getMessage();
-       }
+    @PostMapping("/deposit")
+    public ResponseEntity<Void> depositAccount(
+            @RequestHeader("Authorization") String user,
+            @RequestBody AccountDTO accountDTO) {
 
-       return  ResponseEntity.status(HttpStatus.CREATED).build();
-   }
-   @PostMapping("/withdrawAcount")
-   public ResponseEntity<Void> withdrawAccount (@RequestHeader("Authorization") String user, @RequestBody AccountDTO accountDTO){
-       try{
-           if(accountDTO.getBalance()>0 || ){}
+        try {
+            accountService.depositAcount(accountDTO.getId(), accountDTO.getBalance());
+            log.info("Deposito feito com sucesso");
 
-           accountService.withdrawAcount(accountDTO.getId(),accountDTO.getBalance());
-           log.info("Deposito feito com sucesso");
-       }catch(Exception e){
-           e.getMessage();
-       }
+        } catch (Exception e) {
+            e.getMessage();
+        }
 
-       return  ResponseEntity.status(HttpStatus.CREATED).build();
-   }
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/withdrawAcount")
+    public ResponseEntity<Void> withdrawAccount(
+            @RequestHeader("Authorization") String user,
+            @RequestBody AccountDTO accountDTO) {
+        try {
+
+            if (accountDTO.getBalance() > 0) {
+                accountService.withdrawAcount(accountDTO.getId(), accountDTO.getBalance());
+                log.info("Deposito feito com sucesso");
+
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 
 }
