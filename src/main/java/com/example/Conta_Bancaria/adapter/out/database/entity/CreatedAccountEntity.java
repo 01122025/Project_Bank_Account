@@ -10,12 +10,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class CreatedAccountEntity {
+public class  CreatedAccountEntity {
 
     private Long idHolder;
+    private String name;
+    private String documentCpf;
+    private String email;
 
-    private String nameAccountHolder;
-
-    private LocalDateTime createdDate;
 
 }

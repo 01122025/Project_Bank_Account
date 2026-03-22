@@ -1,7 +1,8 @@
 package com.example.Conta_Bancaria.application;
 
 import com.example.Conta_Bancaria.application.service.AccountServiceRepository;
-import com.example.Conta_Bancaria.shared.dto.AccountDTO;
+
+import java.math.BigDecimal;
 
 
 public class AccountService {
@@ -9,19 +10,25 @@ public class AccountService {
 
     private TransactionService transactionService;
 
-    public AccountService(AccountDTO accountDTO, AccountServiceRepository accountServiceRepository) {
+    public AccountService(AccountServiceRepository accountServiceRepository) {
         this.accountServiceRepository = accountServiceRepository;
 
     }
 
-    public void depositAcount(Long id, Double amount) {
-
+    public void depositAcount(Long id, BigDecimal amount) {
+        try{
+        if (amount.compareTo(BigDecimal.ZERO)<0){
+            throw new RuntimeException();
+        }
         accountServiceRepository.depositAcount(id, amount);
-
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void withdrawAcount(Long id, Double amount) {
-        accountServiceRepository.withdrawAcount(id, amount);
+    public void withdrawAcount(Long id, BigDecimal amount) {
+            accountServiceRepository.withdrawAcount(id, amount);
+
     }
 
 }

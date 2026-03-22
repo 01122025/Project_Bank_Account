@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+
 @RestController
 @RequestMapping("/teste")
 @RequiredArgsConstructor
@@ -56,9 +58,11 @@ public class AccountController {
             @RequestBody AccountDTO accountDTO) {
         try {
 
-            if (accountDTO.getBalance() > 0) {
-                accountService.withdrawAcount(accountDTO.getId(), accountDTO.getBalance());
-                log.info("Deposito feito com sucesso");
+            if (accountDTO.getBalance().compareTo(BigDecimal.ZERO)>0) {
+                accountService.withdrawAcount(
+                        accountDTO.getId(),
+                        accountDTO.getBalance());
+                log.info("Saque feito com sucesso");
 
             }
         } catch (Exception e) {

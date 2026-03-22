@@ -10,14 +10,13 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
-public class ServiceCreatedAccount implements CreatedAccountRepository {
+public class CreatedAccountOut implements CreatedAccountRepository {
 
 
     private CreatedAccountEntity createdAccountEntity;
 
     @Override
     public void createdAccount(AccountDTO accountDTO) {
-
     }
 
     @Override

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -13,9 +14,10 @@ import java.time.LocalDateTime;
 public class AccountDTO {
     private Long id;
     private String agency;
-    private Double balance;
+    private BigDecimal balance;
     private AccountHolderDTO accountHolderName;
     private TypeAccount accountType;
     private LocalDateTime createdAt;
 
 }
+
