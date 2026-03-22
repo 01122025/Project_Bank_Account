@@ -1,7 +1,6 @@
 package com.example.Conta_Bancaria.adapter.out.database.entity;
 
 
-import com.example.Conta_Bancaria.shared.dto.AccountHolderDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
