@@ -1,5 +1,9 @@
 package com.example.Conta_Bancaria.adapter.out.database.repository;
 
-public interface CreatedAccountJpaRepository
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface CreatedAccountJpaRepository extends JpaRepository
 {
 }

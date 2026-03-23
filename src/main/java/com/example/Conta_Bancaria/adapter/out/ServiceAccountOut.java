@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
-public class ServiceAccountOut implements AccountServiceRepository {
+public class   ServiceAccountOut implements AccountServiceRepository {
 
     private CreatedAccountEntity createdAccountEntity;
 
