@@ -1,7 +1,6 @@
 package com.example.Conta_Bancaria.adapter.out.database.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,13 +11,18 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
+@Table(name = "accountholder", schema = "banco_test")
 public class  CreatedAccountEntity {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idHolder;
+    @Column(name = "NOME_TITULAR")
     private String name;
+    @Column(name = "CPF_TITULAR")
     private String documentCpf;
+    @Column(name = "EMAIL_TITULAR")
     private String email;
+
 
 
 }

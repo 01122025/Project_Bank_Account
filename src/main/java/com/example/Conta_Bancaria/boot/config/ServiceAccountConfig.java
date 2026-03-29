@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ServiceAccountConfig {
+
     @Bean
     public AccountService accountservice (AccountServiceRepository accountServiceRepository){
         return new AccountService(accountServiceRepository);

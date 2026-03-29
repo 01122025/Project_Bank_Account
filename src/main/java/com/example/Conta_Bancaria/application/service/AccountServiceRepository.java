@@ -1,7 +1,9 @@
 package com.example.Conta_Bancaria.application.service;
 
-import java.math.BigDecimal;
+import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+@Repository
 public interface AccountServiceRepository {
 
     void depositAcount(Long id, BigDecimal amount);

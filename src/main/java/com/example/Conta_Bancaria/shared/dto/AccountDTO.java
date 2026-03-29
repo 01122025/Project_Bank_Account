@@ -15,9 +15,10 @@ public class AccountDTO {
     private Long id;
     private String agency;
     private BigDecimal balance;
-    private AccountHolderDTO accountHolderName;
+    private AccountHolderDTO accountHolderDTO;
     private TypeAccount accountType;
     private LocalDateTime createdAt;
+
 
 }
 

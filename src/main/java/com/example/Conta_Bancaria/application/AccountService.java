@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 public class AccountService {
     private final AccountServiceRepository accountServiceRepository;
 
-    private TransactionService transactionService;
 
     public AccountService(AccountServiceRepository accountServiceRepository) {
         this.accountServiceRepository = accountServiceRepository;

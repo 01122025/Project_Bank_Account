@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 
 @RestController
-@RequestMapping("/teste")
+@RequestMapping("/getAccount")
 @RequiredArgsConstructor
 @Slf4j
 public class AccountController {
@@ -20,16 +20,23 @@ public class AccountController {
    private final CreatedAccount createdAccount;
    private final AccountService accountService;
 
-   @PostMapping
+
+   @GetMapping
+   public ResponseEntity<String> getAccount(){
+       return ResponseEntity.ok("Bem Vindo a API de Conta Bancaria");
+   }
+
+
+   @PostMapping("/created")
    public ResponseEntity<Void> createdAccount(
-           @RequestHeader("Authorization") String user,
+           @RequestHeader("user") String user,
            @RequestBody AccountDTO AccountDTO){
 
             try {
                 createdAccount.createdAccount(AccountDTO);
 
             }catch(Exception e){
-                log.error("Error ao criar account {} para o usuario {}", AccountDTO.getAccountHolderName(),AccountDTO.getAccountHolderName() );
+                log.error("Error ao criar account {} para o usuario {}", AccountDTO.getAccountHolderDTO(),AccountDTO.getAccountHolderDTO() );
                 e.printStackTrace();
             }
 

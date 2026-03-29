@@ -11,15 +11,13 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
-public class   ServiceAccountOut implements AccountServiceRepository {
+public class ServiceAccountOut implements AccountServiceRepository {
 
     private CreatedAccountEntity createdAccountEntity;
 
 
     @Override
     public void depositAcount(Long id, BigDecimal amount) {
-
-
 
     }
 

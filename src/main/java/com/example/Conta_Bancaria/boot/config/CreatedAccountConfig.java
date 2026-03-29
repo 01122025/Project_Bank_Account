@@ -7,8 +7,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class CreatedAccountConfig {
+
     @Bean
-    public CreatedAccount creaatedAccount (CreatedAccountRepository createdAccountRepository){
-        return new CreatedAccount(createdAccountRepository);
+    public CreatedAccount createdAccount(CreatedAccountRepository createdAccount){
+        return new CreatedAccount(createdAccount);
     }
 }
