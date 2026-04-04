@@ -1,82 +1,39 @@
 package com.example.Conta_Bancaria.adapter.in;
 
 import com.example.Conta_Bancaria.application.AccountService;
-import com.example.Conta_Bancaria.application.CreatedAccount;
 import com.example.Conta_Bancaria.shared.dto.AccountDTO;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/getAccount")
-@RequiredArgsConstructor
-@Slf4j
 public class AccountController {
 
-   private final CreatedAccount createdAccount;
-   private final AccountService accountService;
+//    private final CreatedAccount createdAccount;
+    private final AccountService accountService;
 
-
-   @GetMapping
-   public ResponseEntity<String> getAccount(){
-       return ResponseEntity.ok("Bem Vindo a API de Conta Bancaria");
-   }
-
-
-   @PostMapping("/created")
-   public ResponseEntity<Void> createdAccount(
-           @RequestHeader("user") String user,
-           @RequestBody AccountDTO AccountDTO){
-
-            try {
-                createdAccount.createdAccount(AccountDTO);
-
-            }catch(Exception e){
-                log.error("Error ao criar account {} para o usuario {}", AccountDTO.getAccountHolderDTO(),AccountDTO.getAccountHolderDTO() );
-                e.printStackTrace();
-            }
-
-                return  ResponseEntity.status(HttpStatus.CREATED).build();
-   }
-
-    @PostMapping("/deposit")
-    public ResponseEntity<Void> depositAccount(
-            @RequestHeader("Authorization") String user,
-            @RequestBody AccountDTO accountDTO) {
-
-        try {
-            accountService.depositAcount(accountDTO.getId(), accountDTO.getBalance());
-            log.info("Deposito feito com sucesso");
-
-        } catch (Exception e) {
-            e.getMessage();
-        }
-
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
     }
 
-    @PostMapping("/withdrawAcount")
-    public ResponseEntity<Void> withdrawAccount(
-            @RequestHeader("Authorization") String user,
-            @RequestBody AccountDTO accountDTO) {
-        try {
+    @PostMapping("/deposito")
+    public void deposit(
+            @RequestBody AccountDTO accountDTO
+    ){
+        try{
 
-            if (accountDTO.getBalance().compareTo(BigDecimal.ZERO)>0) {
-                accountService.withdrawAcount(
-                        accountDTO.getId(),
-                        accountDTO.getBalance());
-                log.info("Saque feito com sucesso");
-
+            if(accountDTO.getAmount() == null){
+                throw new IllegalArgumentException("Amount cannot be null");
             }
-        } catch (Exception e) {
-            e.getMessage();
+            accountService.deposit(accountDTO, accountDTO.getAmount());
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
         }
 
-        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
 
 }

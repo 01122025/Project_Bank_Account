@@ -1,33 +1,57 @@
 package com.example.Conta_Bancaria.application;
 
 import com.example.Conta_Bancaria.application.service.AccountServiceRepository;
+import com.example.Conta_Bancaria.shared.dto.AccountDTO;
 
-import java.math.BigDecimal;
+import java.util.logging.Logger;
 
 
 public class AccountService {
-    private final AccountServiceRepository accountServiceRepository;
 
+    Logger logger = Logger.getLogger(AccountService.class.getName());
+
+    private final AccountServiceRepository accountServiceRepository;
 
     public AccountService(AccountServiceRepository accountServiceRepository) {
         this.accountServiceRepository = accountServiceRepository;
-
     }
 
-    public void depositAcount(Long id, BigDecimal amount) {
+    public void deposit (AccountDTO accountDTO, Double amount) {
+        try {
+            if(amount <= 0) {
+                throw new IllegalArgumentException("Amount must be greater than zero");
+            }
+            if (amount > accountDTO.getBalance()) {
+                throw new IllegalArgumentException("Amount must be less than or equal to balance");
+            }
+
+            double newBalance = accountDTO.getBalance() + amount;
+            accountServiceRepository.depositAcount(accountDTO);
+
+        }catch (IllegalArgumentException e) {
+             logger.info(e.getMessage());
+
+        }
+    }
+
+
+    public void withdraw (AccountDTO accountDTO, Double amount) {
         try{
-        if (amount.compareTo(BigDecimal.ZERO)<0){
-            throw new RuntimeException();
-        }
-        accountServiceRepository.depositAcount(id, amount);
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+            if(amount <= 0) {
+                throw new IllegalArgumentException("Amount must be greater than zero");
+            }
+
+            if (amount > accountDTO.getBalance()) {
+                throw new IllegalArgumentException("Amount must be less than or equal to balance");
+            }
+
+            double newBalance = accountDTO.getBalance() - amount;
+            accountServiceRepository.withdrawAcount(accountDTO);
+
+        }catch (Exception e){
+            logger.info(e.getMessage());
         }
     }
 
-    public void withdrawAcount(Long id, BigDecimal amount) {
-            accountServiceRepository.withdrawAcount(id, amount);
-
-    }
 
 }
