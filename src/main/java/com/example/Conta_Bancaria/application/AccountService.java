@@ -21,11 +21,9 @@ public class AccountService {
             if(amount <= 0) {
                 throw new IllegalArgumentException("Amount must be greater than zero");
             }
-            if (amount > accountDTO.getBalance()) {
-                throw new IllegalArgumentException("Amount must be less than or equal to balance");
-            }
 
             double newBalance = accountDTO.getBalance() + amount;
+            accountDTO.setBalance(newBalance);
             accountServiceRepository.depositAcount(accountDTO);
 
         }catch (IllegalArgumentException e) {
@@ -42,10 +40,11 @@ public class AccountService {
             }
 
             if (amount > accountDTO.getBalance()) {
-                throw new IllegalArgumentException("Amount must be less than or equal to balance");
+                throw new IllegalArgumentException("Insufficient balance");
             }
 
             double newBalance = accountDTO.getBalance() - amount;
+            accountDTO.setBalance(newBalance);
             accountServiceRepository.withdrawAcount(accountDTO);
 
         }catch (Exception e){
