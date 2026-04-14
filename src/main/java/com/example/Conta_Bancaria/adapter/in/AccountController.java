@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/account")
 public class AccountController {
 
-//    private final CreatedAccount createdAccount;
     private final AccountService accountService;
 
     public AccountController(AccountService accountService) {
@@ -26,7 +25,7 @@ public class AccountController {
     ){
 
             accountService.deposit(accountDTO, accountDTO.getAmount());
-            log.info("Deposit processed: accountId={}, amount={}", accountDTO.getId(), accountDTO.getAmount());
+            log.info("Deposit processed: Number Account={}, amount={}", accountDTO.getId(), accountDTO.getAmount());
 
     }
 
@@ -36,6 +35,7 @@ public class AccountController {
     ){
 
             accountService.withdraw(accountDTO, accountDTO.getAmount());
+             log.info("Withdraw processed: Number Account={}, amount={}", accountDTO.getId(), accountDTO.getAmount());
 
 
     }

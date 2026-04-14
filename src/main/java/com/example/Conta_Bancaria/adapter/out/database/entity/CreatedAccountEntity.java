@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,11 +17,12 @@ public class CreatedAccountEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long idHolder;
-    @Column(name = "NAME")
+    @Column(name = "name")
     private String name;
-    @Column(name = "DOCUMENT")
-    private String documentCpf;
-    @Column(name = "EMAIL")
+    @Column(name = "document")
+    private String documentID;
+    @Column(name = "email")
     private String email;
+
 
 }

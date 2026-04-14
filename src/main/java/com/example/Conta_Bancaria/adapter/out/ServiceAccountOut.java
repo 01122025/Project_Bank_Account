@@ -4,29 +4,26 @@ import com.example.Conta_Bancaria.adapter.out.database.entity.AccountCreatedEnti
 import com.example.Conta_Bancaria.adapter.out.database.repository.AccountJpaRepository;
 import com.example.Conta_Bancaria.application.service.AccountServiceRepository;
 import com.example.Conta_Bancaria.shared.dto.AccountDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
-
+@RequiredArgsConstructor
 @Component
 public class ServiceAccountOut implements AccountServiceRepository {
 
     private final AccountJpaRepository accountJpaRepository;
 
-    public ServiceAccountOut(AccountJpaRepository accountJpaRepository) {
-        this.accountJpaRepository = accountJpaRepository;
-    }
 
     @Override
     public void depositAcount(AccountDTO accountDTO) {
-        AccountCreatedEntity accountCreatedEntity = accountJpaRepository.findById(accountDTO.getId()).orElseThrow(() -> new RuntimeException("Account not found"));
+        AccountCreatedEntity accountCreatedEntity = new AccountCreatedEntity();
         accountCreatedEntity.setBalance(accountDTO.getBalance());
+        accountCreatedEntity.setCreatedAt(accountDTO.getCreatedAt());
         accountJpaRepository.save(accountCreatedEntity);
     }
     @Override
     public void withdrawAcount(AccountDTO accountDTO) {
-        AccountCreatedEntity accountCreatedEntity = accountJpaRepository.findById(accountDTO.getId()).orElseThrow(() -> new RuntimeException("Account not found"));
+        AccountCreatedEntity accountCreatedEntity = new AccountCreatedEntity();
         accountCreatedEntity.setBalance(accountDTO.getBalance());
         accountJpaRepository.save(accountCreatedEntity);
     }

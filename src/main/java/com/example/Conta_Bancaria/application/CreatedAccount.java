@@ -1,6 +1,7 @@
 package com.example.Conta_Bancaria.application;
 
 import com.example.Conta_Bancaria.application.service.CreatedAccountRepository;
+import com.example.Conta_Bancaria.shared.dto.AccountHolderDTO;
 
 
 public class CreatedAccount {
@@ -12,5 +13,8 @@ public class CreatedAccount {
         this.createdAccountRepository = createdAccountRepository;
     }
 
+    public void createAccount(AccountHolderDTO  accountHolderDTO) {
+        createdAccountRepository.createdAccount(accountHolderDTO);
+    }
 
 }

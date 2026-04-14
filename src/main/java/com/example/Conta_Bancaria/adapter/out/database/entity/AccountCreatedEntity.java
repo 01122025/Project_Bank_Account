@@ -19,20 +19,15 @@ public class  AccountCreatedEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long idAccount;
-    @Column(name = "AGENCY", unique = true, nullable = false)
+    @Column(name = "agency", unique = true, nullable = false)
     private String agency;
-    @Column(name = "BALANCE")
+    @Column(name = "balance")
     private Double balance;
     @Enumerated(EnumType.STRING)
-    @Column(name = "ACCOUNT_TYPE")
+    @Column(name = "account_type")
     private TypeAccount typeAccount;
-    @Column(name = "CREATED_AT")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-// relacionamento entre as entiades
-// lado inverso (opcional, mas recomendado)
-    @OneToOne
-    @JoinColumn(name = "account_holder_id", unique = true)
-    private CreatedAccountEntity accountHolder;
 
 }
